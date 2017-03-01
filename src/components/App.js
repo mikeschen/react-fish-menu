@@ -19,28 +19,33 @@ class App extends React.Component {
 		};
 	}
 
-	// componentWillMount() {
-	// 	this.ref = base.syncState(`${this.props.params.storeId}/fishes`
-	// 		, {
-	// 			context: this,
-	// 			state: 'fishes'
-	// 	});
-	// 	const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+	componentWillMount() {
+		this.ref = base.syncState(`${this.props.params.storeId}/fishes`
+			, {
+				context: this,
+				state: 'fishes'
+		});
+		const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
 
-	// 	if(localStorageRef){
-	// 		this.setState({
-	// 			order: JSON.parse(localStorageRef)
-	// 		});	
-	// 	}
-	// }	
+		if(localStorageRef){
+			this.setState({
+				order: JSON.parse(localStorageRef)
+			});	
+		}
+	}	
 
-	// componentWillUnmount() {
-	// 	base.removeBinding(this.ref);
-	// }
+	componentWillUpdate(nextProps, nextState) {
+		console.log('something changed')
+		console.log({nextProps, nextState})
+	}
 
-	// componentWillUpdate(nextProps, nextState) {
-	// 	localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order))
-	// }
+	componentWillUnmount() {
+		base.removeBinding(this.ref);
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+		localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order))
+	}
 
 	addFish(fish) {
 		const fishes = {...this.state.fishes};
