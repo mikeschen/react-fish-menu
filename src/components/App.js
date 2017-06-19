@@ -32,11 +32,6 @@ class App extends React.Component {
 				order: JSON.parse(localStorageRef)
 			});	
 		}
-	}	
-
-	componentWillUpdate(nextProps, nextState) {
-		console.log('something changed')
-		console.log({nextProps, nextState})
 	}
 
 	componentWillUnmount() {
